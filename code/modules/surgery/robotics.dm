@@ -390,6 +390,8 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		if(I.damage > (I.max_damage * 0.75))
+			to_chat(user, "<span class='notice'> \The [I] looks like it will need further repair, outside of [target]'s chassis.</span>")
 		if(I && I.damage)
 			if(I.is_robotic())
 				user.visible_message(
